@@ -1,0 +1,55 @@
+﻿@font-face {
+	font-family: Montserrat;
+	src: url('../fonts/Montserrat.TTF') format('truetype');
+}
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+	font-family: Montserrat, sans-serif;
+}
+
+.navbar-fixed-top .nav {
+    padding: 15px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 15px;
+}
+
+#kommentti {
+	width: 45%;
+	float: right;
+}
+#tiedot {
+	width: 45%;
+	float: left;
+}
+
+.p>p {
+	font-size: 18px;
+}
+
+#placeholder {
+	position: absolute;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+
+    .navbar-fixed-top .navbar-brand {
+        padding: 15px 0;
+    }
+}
+
+@media(max-width:768px) {
+
+	#kommentti {
+	width: 100%;
+	}
+		
+	#tiedot {
+	width: 100%;
+	}
+}

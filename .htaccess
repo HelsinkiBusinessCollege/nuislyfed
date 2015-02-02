@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteBase /s1300790/tehtavia/testbench/ruokalista/
+
+RewriteCond %(REQUEST_FILENAME) !-f
+RewriteCond %(REQUEST_FILENAME) !-d
+RewriteRule ^paiva/(.*)$ index.php?paiva=$1 [L]
