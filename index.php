@@ -57,8 +57,8 @@ $root = "/s1300790/tehtavia/testbench/ruokalista/";
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<!-- <iframe src="https://www.youtube.com/embed/FOuTFka6i4E?t=47&autoplay=1&loop=1" style="position:absolute; height:0px;width:0" frameborder="0" allowfullscreen></iframe> -->
-				<h1 id="placeholder"></h1>
+				<iframe src="https://www.youtube.com/embed/FOuTFka6i4E?autoplay=1&loop=1" style="position:absolute; height:0px;width:0" frameborder="0" allowfullscreen></iframe>
+				
 				<p id="tiedot">
 				<?php 
 				  $paiva = 0;
@@ -218,9 +218,14 @@ $root = "/s1300790/tehtavia/testbench/ruokalista/";
 		
 		$database = new mysqli($servername, $username, $password, $db);
 		
-		    $haku = $database->prepare("select * from nf_comments");
-			$haku->execute();
-			$tulos=$haku->get_result();
+		if(mysqli_connect_errno()) {
+			printif ("yhteys on epäonnistunut", mysqli_connect_error()); 
+			exit;
+		}
+		
+		    $query = $database->prepare("select * from nf_comments");
+			$query->execute();
+			$tulos=$query->get_result();
 			while($rivi=$tulos->fetch_assoc()){
 			print('<div class="row">');
 			print('<div class="col-md-4">'. $rivi['comment'] . '</div>'
