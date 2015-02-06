@@ -1,5 +1,5 @@
 <?php 
-ini_set('display_errors',0);
+ini_set('display_errors',1);
 $root = "/s1300790/tehtavia/testbench/ruokalista/";
 ?>
 <!DOCTYPE html>
@@ -42,11 +42,11 @@ $root = "/s1300790/tehtavia/testbench/ruokalista/";
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="<?php echo $root?>paiva/maanantai" title="0" onclick="valitse(this); return false;">Maanantai</a></li>
-					<li><a href="<?php echo $root?>paiva/tiistai" title="1" onclick="valitse(this); return false;">Tiistai</a></li>
-					<li><a href="<?php echo $root?>paiva/keskiviikko" title="2" onclick="valitse(this); return false;">Keskiviikko</a></li>
-					<li><a href="<?php echo $root?>paiva/torstai" title="3" onclick="valitse(this); return false;">Torstai</a></li>
-					<li><a href="<?php echo $root?>paiva/perjantai" title="4" onclick="valitse(this); return false;">Perjantai</a></li>
+					<li><a href="<?php echo $root?>paiva/maanantai" title="0" onclick="valitse(this);">Maanantai</a></li>
+					<li><a href="<?php echo $root?>paiva/tiistai" title="1" onclick="valitse(this);">Tiistai</a></li>
+					<li><a href="<?php echo $root?>paiva/keskiviikko" title="2" onclick="valitse(this);">Keskiviikko</a></li>
+					<li><a href="<?php echo $root?>paiva/torstai" title="3" onclick="valitse(this);">Torstai</a></li>
+					<li><a href="<?php echo $root?>paiva/perjantai" title="4" onclick="valitse(this);">Perjantai</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -57,6 +57,7 @@ $root = "/s1300790/tehtavia/testbench/ruokalista/";
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
+				<!-- <iframe src="https://www.youtube.com/embed/FOuTFka6i4E?t=47&autoplay=1&loop=1" style="position:absolute; height:0px;width:0" frameborder="0" allowfullscreen></iframe> -->
 				<h1 id="placeholder"></h1>
 				<p id="tiedot">
 				<?php 
@@ -208,7 +209,16 @@ $root = "/s1300790/tehtavia/testbench/ruokalista/";
 			</div>
 		</div>
 		<div id="comments">
-		<?php $haku = $database->prepare("select * from nf_comments");
+		<?php 
+		
+		$servername = "localhost:3306";
+		$username = "root";
+		$password = "";
+		$db = "nuislyfeddb";
+		
+		$database = new mysqli($servername, $username, $password, $db);
+		
+		    $haku = $database->prepare("select * from nf_comments");
 			$haku->execute();
 			$tulos=$haku->get_result();
 			while($rivi=$tulos->fetch_assoc()){
@@ -219,10 +229,10 @@ $root = "/s1300790/tehtavia/testbench/ruokalista/";
 			. '<div class="col-md-3">'. $rivi['sahkoposti'] . '</div>'
 			. '<div class="col-md-2">'. $rivi['arvosana'].'</div>');
 			print("</div>");
-}
+			}
 
-$database->close();
-?>
+			$database->close();
+		?>
 	</div>
 	
 	</div>
